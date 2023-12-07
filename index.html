@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>CNN Explorable Explanation</title>
+
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+  <!-- Import the data file -->
+  <script src="data.js" type="module"></script>
+  <script src="buttons.js"></script>
+
+    
+  <!-- Train Button -->
+  <!-- <button id="train-button">Click to Train!</button> -->
+  <!-- Drawing Canvas -->
+  <!-- <div id="canvas_box" class="canvas-box"></div>
+  <button id="clear-button" class="btn btn-dark">Clear</button>
+  <button id="predict-button" class="btn btn-dark">Predict</button> -->
+
+  <!-- Import the main script file -->
+  <script src="script.js" type="module"></script>
+  	
+
+
+</head>
+
+<body>
+  <div class="rowTop">
+    <div class="title">
+      <header ><h style="font-family: 'Verdana'; font-size: 20px;">Dear</h> Neural Networks,</header>
+    </div>
+    <div class="title">
+      <header style="text-decoration: underline; margin: -13px; margin-bottom: -8px"><h style="font-family: 'Verdana'; font-size: 20px;">What the</h> <h>F*ck</h> <h style="font-family: 'Verdana'; font-size: 20px;">Are You?</h></header>
+    </div>
+    <h class="subtitle">A Friendly Guide to Convolutional Neural Networks in Image Processing</h>
+  </div>
+
+  <div class="rowTop">
+      <h class="subtitle2">What Is A Neural Network?</h>
+      <div class="text-block">
+        <h class="info-text">Neural Networks may sound intimidating, but don't worry! </h>
+      </div>
+      <div class="text-block">
+        <h class="info-text">They are often challenging to learn because they function as <h style="font-weight: bold;">black-box algorithms</h> where a lot of its mathematical processes are hidden.</h>
+        <h class="info-text">However, in this guide we will attempt to explain each step slowly and clearly to you so that at the end of this journey, you can fully understand how a neural network functions!</h>
+      </div>
+      <div class="text-block" >
+        <h class="info-text" style="font-size: 15px; letter-spacing: .05rem; background-image:linear-gradient(to right, white , lightgray, white); padding: 5px;">A neural network is a multi-layer network used in machine learning for classification.</h>
+        <div class="text-block" style="padding-top:10px; text-decoration: underline;font-size: 12px;font-weight: bold;letter-spacing: .03rem;margin-top: 8px">Here are the layers that make up the network:</div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Input Layer: </h>The initial data we start with before any calculation or manipulation has occurred</h></div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Hidden layers:</h> The in-between layers where calcutions are performed.</h></div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Output layer:</h> Prediction result is produced.</h></div>
+        <div class="text-block">
+          <button class="showButton" onclick="shownetwork1()">Input Layer</button>
+          <button class="showButton" onclick="shownetwork2()">Hidden Layers</button>
+          <button class="showButton" onclick="shownetwork3()">Output Layer</button>
+        </div>
+        <div class="text-block" style="padding-left: 52px;">
+          <div class="frame">
+          <img class="network1"  src="./web-images/network_1.png">
+          <img class="network2"  src="./web-images/network_2.png">
+          <img class="network3" src="./web-images/network_3.png">
+        </div>
+      </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <h class="subtitle2">What is a CNN?</h>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">Convolution neural networks (CNNs) are a type of neural network. It follows the same architecture with an input layer, hidden layer, and output layer. However, there are more specificities in its hidden layers!</h>
+      </div>
+      <div class="text-block" >
+        <h class="info-text" style="margin:0px; text-decoration: underline;font-size: 12px;font-weight: bold;letter-spacing: .03rem;margin-top: 8px">Here are four layers that make up a CNN:</h>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Convolution Layer:</h> A kernel is implemented to 'filter' the original image matrix.</h></div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">ReLu layer:</h> Rectified Layer Unit. Normalizes the matrix to only include non-negative numbers.</h></div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Pooling layer:</h> Reduces matrix dimension to increase efficiency.</h></div>
+        <div class="text-block" style="margin:0px"><h class="info-text"><h style="font-weight: bold;">Fully connected layer:</h> Analyses and identifies the object of the image.</h></div>
+        <div class="text-block">
+          <button class="showButton" style="font-size: 12px" onclick="showcnn2()">Convolution Layer</button>
+          <button class="showButton" style="font-size: 12px" onclick="showcnn3()">ReLu Layer</button>
+          <button class="showButton" style="font-size: 12px" onclick="showcnn4()">Pooling Layer</button>
+          <button class="showButton" style="font-size: 12px" onclick="showcnn5()">Fully Connected Layer</button>
+        </div>
+    
+      </div>
+    </div>
+    <div class="column">
+      <div class="frame" style="width: 700px; height: 200px">
+        <img class="cnn1"  src="./web-images/cnn1.png">
+        <img class="cnn2"  src="./web-images/cnn2.png">
+        <img class="cnn3" src="./web-images/cnn3.png">
+        <img class="cnn4"  src="./web-images/cnn4.png">
+        <img class="cnn5"  src="./web-images/cnn5.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="flex-direction: column; align-items: center;">
+    <header class="subtitle2">Data Input</header>
+    <div class="mnist-banner"></div>
+    <h class="info-text">In our friendly guide to convolutional neural networks today we will be using the MNIST dataset for our example!</h>
+    <div class="info-text text-block" style="margin-top: 15px; width: 70vh; text-align: center;">
+      <h>MNIST dataset stands for Modified National Institute Standard and Technology database and consists of 28x28 black and white images of handwritten single-digit numbers.</h>
+      <h>This dataset is readily available online and can be found <a href="https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png" target="_blank" rel="noopener noreferrer">HERE</a>.</h>
+      <h>However, in order to use this dataset for training a neural network, it must be pre-processed into individual images and labeled.</h>
+    </div>
+    
+  <!-- </div>
+  <div class="row"> -->
+
+
+    <div class="column" style="background-image:linear-gradient(to right, white , #ededed , white); margin-top: 10px">
+      <header class="subtitle2" style="padding-top: 10px; font-style: italic; text-decoration: underline;">What Number Is This?</header>
+      <div class="frame">
+        <img class="seven" style="height:287px; width:287px" src="./web-images/mnistSeven.png">
+        <img class="binary-image" id="show"style="height:287px; width:287px" src="./web-images/seven_editedBinary.png">
+      </div>
+      <div>
+        <button onclick="showincorrecttext()" class="numberButton">ONE</button>
+        <button onclick="showcorrecttext()" class="numberButton">SEVEN</button>
+      </div>
+      <div>
+        <button onclick="showincorrecttext()" class="numberButton">THREE</button>
+        <button onclick="showincorrecttext()" class="numberButton">NINE</button>
+      </div>
+      <div class="correct">
+        <h id="correctAns" class="info-text sevenAnswer" style="font-family: 'garamond'">CORRECT</h>
+      </div>
+      <div class="wrong">
+        <h id="wrongAns" class="info-text sevenAnswer" style="font-family: 'garamond'">WRONG</h>
+      </div>
+    </div>
+    
+    <div class="column" style="margin-top: 50px">
+      <div class="text-block" style="margin-top:-40px">
+        <div>
+          <h class="info-text">It may be easy for us to recognize what number this image is, but computers inherently are unable to recognize handwritten images.</h>
+        </div>
+          <button class="showButton" onclick="showbinaryseven()">SHOW HOW COMPUTERS SEE THE IMAGE</button>
+          <button class="showButton" onclick="hidebinaryseven()">SHOW HOW PEOPLE SEE THE IMAGE</button> 
+        <div><h class="info-text">1 = White Pixels ; 0 = Black Pixels</h></div>
+        <div style="margin: 15px">
+          <h class="info-text" style="font-size: 13px;">As such, they need us to label the numbers so Neural Networks can be trained to recognize patterns within these images.</h>
+          <h class="info-text" style="font-size: 13px;">Fortunately, we do not need to hand-label the entire dataset as people have already done that for us! However, we do need to write code to pair up the right labels with the right image.</h>
+        </div>
+        <h class="info-text">For those who are interested, an example code for that can be found <a href="https://raw.githubusercontent.com/tensorflow/tfjs-examples/master/mnist-core/data.js" target="_blank" rel="noopener noreferrer">HERE</a></h>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row2" style="flex-direction: column; align-items: center; margin-top: 200px;">
+    <h class="subtitle2">What Is Convolution?</h>
+    <h class="info-text">CNNs are called Convolution Neural Networks because they include Convolutional Layers!</h>
+    <div class="text-block" style="margin-top:5px">
+      <h class="info-text">Convolution is a process in which we condense our original image matrix into a smaller matrix so that our algorithm can work more efficiently with a reduced number of parameters.</h>
+      <h class="info-text">In order to do so kernels and maxpooling must be implemented so successfully create a convolutional layer.</h>
+    </div>
+  </div>
+
+  <div class="row2" style="margin-top:-50px">
+    <div class="column">
+      <h class="subtitle2">Kernels</h>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">To do so, we need to first implement a kernel, a smaller matrix that extracts certain 'features' from the original original. Kernels are vital as its feature extraction acts as a filter for our images!</h>
+      </div>
+      <button onclick="showcon2()" class="showButton">Implement Kernel</button>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">In this example, we use a 5x5 kernel for our convolution. The numbers within the kernel changes the function and outcome. For more in depth information on kernels, visit <a href="https://setosa.io/ev/image-kernels/" target="_blank" rel="noopener noreferrer">THIS WEBSITE</a></h>
+      </div>
+      <button onclick="showcon3()" class="showButton">Complete Convolution!</button>
+    </div>
+    <div class="column">
+      <div class="frame" style="width:700px">
+        <img class="con1" src="./web-images/convolution_1.png">
+          <img class="con2" src="./web-images/convolution_2.png">
+          <img class="con3" src="./web-images/convolution_3.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="column">
+      <div class="frame" style="width:700px">
+        <img class="relu0" src="./web-images/reluEmpty.png">
+        <img class="relu1" src="./web-images/reluGraph.png">
+        <img class="relu2" src="./web-images/reluExample.png">
+      </div>
+    </div>
+    <div class="column">
+      <h class="subtitle2">ReLU Activation Function</h>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">After our convolutional, we apply a ReLU (Rectified Linear Unit) to introduce non-linear properties to our CNN model. This makes it easier for the model to adapt with the immense variety of data.</h>
+      </div>
+      <button onclick="showRelu1()" class="showButton">Show ReLU Graph</button>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">The ReLU activation function is quite simple as it only interprets positive elements in its argument. Any negative elements are set to 0 instead</h>
+      </div>
+      <button onclick="showRelu2()" class="showButton">Show ReLU Example</button>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="column">
+      <h class="subtitle2">Maxpooling</h>
+      <div class="text-block" style="width:50vh">
+        <h class="info-text">Now that we have a new, filtered 28x28 matrix, we can now condense it into a smaller matrix by implementing maxpooling!</h>
+      </div>
+      <div class="text-block" style="width:50vh">
+        <div><h class="info-text">Maxpooling is a pooling operation that looks for the maximum element within the rigion covered by the filter. Generally a 2x2 filter is implemented, meaning the resulting matrix is generally half the size of the original.</h></div>
+        <div><button class="showButton" onclick="showPool2()">Apply MNIST Example!</button></div>
+        <div><button class="showButton" onclick="hidePool2()">Show First Example</button></div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="frame" style="width:700px">
+        <img class="maxPool1" src="./web-images/maxpoolingExample.png">
+        <img class="maxPool2" src="./web-images/maxpoolingExample2.png">
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+  <div class="row">
+    <div class="column">
+      <h class="subtitle2">Let's Meet A Neural Network!</h>
+      <div class="text-block">
+        <h>To get started in creating and assessing a neural network let's first create a workspace to do so!</h>
+      </div>
+      <button class="showButton" id="show-visor-button">0: Setup Workspace</button>
+      <div class="text-block"> <h>We will be following the flow of a neural network step by step from its input, hidden layers, and output layer. Everything is occuring live as you press the following buttons so please be patient as certain elements can take a few seconds to load up!</h></div>
+      <div class="text-block" style="font-style: italic;"> <h>*note: to restart this excercise please refresh the page</h></div>
+    </div>
+    <div class="column"></div>
+  </div>
+
+
+  <div class="row">
+    <div class="column">
+      <div class="text-block">
+        <h>So the first step to setting up our CNN is to input data!</h>
+      </div>
+      <button id="load-data-button" class="showButton">1: Input Data!</button>
+      <div class="text-block">
+        <h>The images you see on your right are sprites radomly selected from our MNIST datase consisting of over 60,000 images! We are able to decipher these quickly; however, our system cannot yet. It currently sees these images as nothing more than an array of binary numbers.</h>
+      </div>
+      <div class="text-block"><h>Let us therefore move on and begin training our CNN!</h></div>
+    </div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div class="text-block">
+        <h class="subtitle2">Model Architecture</h>
+      </div>
+      <button id="model-button" class="showButton">2: Show Model Architecture!</button>
+      <!-- <div class="text-block">
+         <h class="subtitle">Model Architecture</h> 
+      </div> -->
+      <div class="frame" style="width: 500px">
+        <img class="model0"  src="./web-images/reluEmpty.png">
+        <img class="model1"  src="./web-images/modelArchitecture.png">
+      </div>
+      <div class="text-block">
+        <h class="info-text">Under <h style="font-style: italic;">'Layer Name'</h> we can see that our CNN goes through <div style="font-weight: bold; margin: 0px">two convolution and max-pooling layers.</div> <div>This is because by condensing our image matrix twice we can increase efficiency even more!</div></h>
+      </div>
+      <div class="text-block">
+        <h class="info-text">Under <h style="font-style: italic;">'Output Shape'</h> we can see exactly how the matrix is condensed with each max-pooling layer! By applying double convolution and max-pooling layers, we condense our original matrix to a 4x4 matrix. If we apply another layer of convolution and max-pooling we lose vital information which can lead to an incorrect image classification.</h>
+      </div>
+      <div class="text-block">
+      </div>
+    </div>
+    
+    <div class="column"></div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="text-block">
+        <h class="subtitle2">Model Training</h>
+      </div>
+      <button id="train-data-button" class="showButton">3: Start Training!</button>
+      <div class="text-block">
+        <h class="info-text">Here we can actually see our CNN model being trained to classify the MNIST dataset live! If you scroll down on our workspace you can see we have two sets: one on batch end and one on epoch end. So let's go through what exactly that means!</h>
+      </div>
+      <div class="text-block">
+        <h class="subtitle2">On Batch End</h>
+      </div>
+      <div class="text-block">
+        <h class="info-text">On the batch end, there are a total of 110 batches! <div>This means that our sample of 500 individual sprites from the MNIST dataset are sent through the CNN Model in 110 groups--an estimate of 4 or 5 samples in each batch.</div></h>
+        <h class="info-text"><div style="text-decoration: underline; margin:7px">We can also see that there are two graphs.</div> <h style="font-weight: bold;">LOSS CURVE</h> Visualizes error of our CNN's guesses.
+                            <div><h style="font-weight: bold;">ACCURACY CURVE:</h> Visualizes CNN's prediction accuracy. <div style="margin: 7px">Over time, we can observe that the accuracy increases as loss decreases with each batch as our CNN model learns to recognize handwritten numbers!</div></div></h>
+      </div>
+      <div class="text-block">
+        <h class="subtitle2">On Epoch End</h>
+      </div>
+      <div class="text-block">
+        <h class="info-text">Whereas batches represent the individual samples, epochs <h style="text-decoration: underline;">represent groups of batches that have made complete passes</h> through our CNN model.</h>
+        <h class="info-text"><div style="font-weight: bold">9 Epochs = 110 batches passing through 9 times.</div></h>
+        <h class="info-text">Similarly to the batch end, we can also find a loss and accuracy curve on the epoch end.</h>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="text-block">
+        <h class="subtitle2">Accuracy</h>
+      </div>
+      <div class="text-block"><h>Now that our dataset is trained, we need to evaluate its accuracy!</h></div>
+      <button id="show-accuracy-button" class="showButton">4: Show Accuracy!</button>
+      <div class="text-block">
+        <h class="info-text">Here we have a table displaying the accuracy of our CNN in predicting each handwritten number!</h>
+        <h class="info-text">In the first row we have have the 'category' of number from 0-9.</h>
+        <h class="info-text">In the second row we have have the accuracy of our CNN model in predicting that respective number.</h>
+        <h class="info-text">In the second third row we have then number of samples from each 'category' 0-9 that we trained our algorithm with.</h>
+      </div>
+      <div class="text-block">
+        <button id="confusion-matrix-button" class="showButton">4.5: Show Confusion Matrix!</button>
+      </div>
+      <div class="text-block">
+        <h class="info-text">The confusion matrix is another to view the accuracy of our model!</h>
+        <h class="info-text">This matrix showcases how many of each sample was actually predicted correctly out of the totaly dispalyed in the third row of our accuracy table.</h>
+        <h class="info-text">Look through and see what our CNN model accidentally wrongly predicted certain numbers as!.</h>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="text-block">
+        <h class="subtitle2">Conclusion</h>
+      </div>
+      <div class="text-block"><h>Congratulations! Now you know what a CNN is! I hope you enjoyed the activity. If you hope to re-do the activity, please refresh the page <h style="font-style:italic">(cmd+shift+r)</h> to  do so.</h></div>
+     
+      <div style="align-content: left;">
+        <div class="text-block" style="text-align: left; margin-left: -10px;  margin-top: 30px">
+          <h class="subtitle2" style="text-decoration: underline;">Vocabulary</h>
+        </div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Black-box Algorithm: </h>An algorithm in which its mathematical processes are hidden, only displaying its input and output.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Input Layer: </h>The initial data we start with before any calculation or manipulation has occurred</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Hidden layers:</h> The in-between layers where calcutions are performed.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Output layer:</h> Prediction result is produced.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Convolution Layer:</h> A kernel is implemented to 'filter' the original image matrix.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">ReLu layer:</h> Rectified Layer Unit. Normalizes the matrix to only include non-negative numbers.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Pooling layer:</h> Reduces matrix dimension to increase efficiency.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Fully connected layer:</h> Analyses and identifies the object of the image.</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Batch:</h> A smaller group of sample (ie. 4 samples in a batch).</h></div>
+        <div class="text-block" style="text-align: left;"><h class="info-text"><h style="font-weight: bold;">Epoch:</h> Number of passes each batch makes through the entire machine learning model.</h></div>
+      </div>
+      
+    </div>
+    <div class="column"></div>
+  </div>
+  
+</body>
+</html>
+</html>
