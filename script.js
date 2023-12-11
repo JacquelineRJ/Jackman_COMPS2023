@@ -222,6 +222,7 @@ $("#show-accuracy-button").click(function(e){
   showAccuracyFunc()
   document.getElementById(accuracyButtonid).disabled = 'true';
 });
+//Show Confusion Matrix
 var confMatrix = document.getElementById('confusion-matrix-button');
 var confMatrixid = "confusion-matrix-button"
 confMatrix.setAttribute("id", confMatrixid)
@@ -231,122 +232,5 @@ $("#confusion-matrix-button").click(function(e){
 });
 
 
-//Canvas to draw on
-let model;
-var canvasWidth             = 150;
-var canvasHeight            = 150;
-var canvasStrokeStyle       = "white";
-var canvasLineJoin          = "round";
-var canvasLineWidth         = 10;
-var canvasBackgroundColor   = "black";
-var canvasId                = "canvas";
-var clickX = new Array();
-var clickY = new Array();
-var clickD = new Array();
-var drawing;
-var canvasBox = document.getElementById('canvas_box');
-var canvas    = document.createElement("canvas");
- 
-canvas.setAttribute("width", canvasWidth);
-canvas.setAttribute("height", canvasHeight);
-canvas.setAttribute("id", canvasId);
-canvas.style.backgroundColor = canvasBackgroundColor;
-canvasBox.appendChild(canvas);
-if(typeof G_vmlCanvasManager != 'undefined') {
-  canvas = G_vmlCanvasManager.initElement(canvas);
-}
- 
-var ctx = canvas.getContext("2d");
-//---------------------
-// MOUSE DOWN function
-//---------------------
-$("#canvas").mousedown(function(e) {
-  var rect = canvas.getBoundingClientRect();
-  var mouseX = e.clientX- rect.left;;
-  var mouseY = e.clientY- rect.top;
-  drawing = true;
-  addUserGesture(mouseX, mouseY);
-  drawOnCanvas();
-});
 
-//---------------------
-// MOUSE MOVE function
-//---------------------
-$("#canvas").mousemove(function(e) {
-  if(drawing) {
-      var rect = canvas.getBoundingClientRect();
-      var mouseX = e.clientX- rect.left;;
-      var mouseY = e.clientY- rect.top;
-      addUserGesture(mouseX, mouseY, true);
-      drawOnCanvas();
-  }
-});
-
-//-------------------
-// MOUSE UP function
-//-------------------
-$("#canvas").mouseup(function(e) {
-  drawing = false;
-});
-
-//----------------------
-// MOUSE LEAVE function
-//----------------------
-$("#canvas").mouseleave(function(e) {
-  drawing = false;
-});
-
-//-----------------------
-// TOUCH LEAVE function
-//-----------------------
-canvas.addEventListener("touchleave", function (e) {
-  if (e.target == canvas) {
-      e.preventDefault();
-  }
-  drawing = false;
-}, false);
-
-//--------------------
-// ADD CLICK function
-//--------------------
-function addUserGesture(x, y, dragging) {
-  clickX.push(x);
-  clickY.push(y);
-  clickD.push(dragging);
-}
-
-//-------------------
-// RE DRAW function
-//-------------------
-function drawOnCanvas() {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-  ctx.strokeStyle = canvasStrokeStyle;
-  ctx.lineJoin    = canvasLineJoin;
-  ctx.lineWidth   = canvasLineWidth;
-
-  for (var i = 0; i < clickX.length; i++) {
-      ctx.beginPath();
-      if(clickD[i] && i) {
-          ctx.moveTo(clickX[i-1], clickY[i-1]);
-      } else {
-          ctx.moveTo(clickX[i]-1, clickY[i]);
-      }
-      ctx.lineTo(clickX[i], clickY[i]);
-      ctx.closePath();
-      ctx.stroke();
-  }
-}
-
-//------------------------
-// CLEAR CANVAS function
-//------------------------
-$("#clear-button").click(async function () {
-  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  clickX = new Array();
-  clickY = new Array();
-  clickD = new Array();
-  $(".prediction-text").empty();
-  $("#result_box").addClass('d-none');
-});
 
